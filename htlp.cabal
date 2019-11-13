@@ -5,9 +5,9 @@ cabal-version:       >=1.10
 name:                htlp
 version:             0.1.0.0
 synopsis:            An exploration of Haskell type level programming.
-description:         Dependent types the Haskell way - using ghc's many extensions
-                     anticipating a fully dependently typed subset of the language
-                     landing sometime in 2020.
+description:         Dependent types the Haskell way, using ghc's many extensions and
+                     the singletons library; anticipating a fully dependently typed
+                     subset of the language landing sometime in 2020.
 -- bug-reports:
 -- license:
 license-file:        LICENSE
@@ -16,12 +16,14 @@ maintainer:          datalligator@icloud.com
 -- copyright:
 -- category:
 build-type:          Simple
-extra-source-files:  CHANGELOG.md
+extra-source-files:  CHANGELOG.md, README.md
 
 library
   exposed-modules:   HTLP.Intro
+                     HTLP.Singletons
   -- other-modules:
   build-depends:     base >=4.13 && <4.14
+                   , singletons
   hs-source-dirs:    src
   default-language:  Haskell2010                             
                      
