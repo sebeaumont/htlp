@@ -77,15 +77,18 @@ instance Functor Cont where
   fmap :: (a -> b) -> Cont a -> Cont b
   -- the new continuation function (b -> r) is composed with the
   -- f'mapped function (a -> b) then the original contiuation (a -> r)
-  -- is applied. Cool beans.
+  -- is applied. Cool.
   fmap f (Cont a) = Cont $ \c' -> a $ c' . f
 
 instance Applicative Cont where
   pure :: a -> Cont a
   pure a = Cont $ cont a
-
+  -- 
   (<*>) :: Cont (a -> b) -> Cont a -> Cont b
-  -- so..
   (Cont f) <*> (Cont a)  = Cont $ \b -> f $ \c -> a $ b . c
 
-
+instance Monad Cont where
+  return = pure
+  (>>=) :: Cont a -> (a -> Cont b) -> Cont b
+  Cont m >>= f = Cont $ \c -> m $ \a -> unCont (f a) c
+  
