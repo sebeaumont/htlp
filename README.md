@@ -11,4 +11,9 @@ I've grasped the basics and done something practical other than follow
 along the ```singletons``` papers. In the hope that it might help
 others get down the road.
 
+But now I have a copy of Sandy McGuire's "Thinking with Types" - Type
+Level Programming in Haskell I'll do all my exercises here for that.
+Which surely will be a better introduction.
+
+
 

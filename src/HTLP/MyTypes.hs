@@ -1,4 +1,5 @@
 {-# LANGUAGE DataKinds, TypeOperators, TypeFamilies #-}
+{-# LANGUAGE GADTs #-}
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -69,7 +70,7 @@ instance Functor W where
   fmap f (W a) = W (f a)
 
 instance Applicative W where
-  pure a = W a
+  pure = W
   W f <*> W a = W (f a)
 
 instance Monad W where
@@ -136,3 +137,19 @@ instance (Monad m) => Monad (ContT m) where
   (>>=) :: ContT m a -> (a -> ContT m b) -> ContT m b
   ContT m >>= f = ContT $ \c -> m $ \a -> unContT (f a) c
 
+-- | Next
+
+data HasShow where
+  HasShow ::  Show t => t -> HasShow
+
+{-
+instance Show HasShow where
+  show (HasShow s) = "HasShow " ++ show s
+-}
+
+elimHasShow :: (forall a. Show a => a -> r) -> HasShow -> r
+elimHasShow f (HasShow a) = f a
+
+instance Show HasShow where
+  show x = elimHasShow show x
+  
