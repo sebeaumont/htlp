@@ -22,7 +22,16 @@ library
   exposed-modules:   HTLP.Intro
                      HTLP.Singletons
                      HTLP.MyTypes
-                     
+                     TWT.Chapter1
+                     TWT.Chapter2
+                     TWT.Chapter3
+                     TWT.Chapter4
+                     TWT.Chapter5
+                     TWT.Chapter6
+                     TWT.Chapter7
+                     TWT.Chapter10                                                               
+                                                                                    
+                                          
   -- other-modules:
   build-depends:     base >=4.13 && <4.14
                    , singletons

@@ -1,4 +1,5 @@
 {-# LANGUAGE RankNTypes #-}
+-- | The Continuation Monad
 module TWT.Chapter6
   ( Cont
   , cont
@@ -14,6 +15,7 @@ newtype Cont a = Cont
   { unCont :: forall r. (a -> r) -> r
   }
 
+-- should make a continuation from a f : (a -> r)
 cont :: a -> Cont a
 cont a = Cont $ \f -> f a
 
